@@ -43,6 +43,7 @@ jobs:
           FIREBASE_IOS_API_KEY=${{ secrets.FIREBASE_IOS_API_KEY }}
           FIREBASE_IOS_APP_ID=${{ secrets.FIREBASE_IOS_APP_ID }}
           FIREBASE_IOS_BUNDLE_ID=com.filemanager.r2FileManager
+          ANDROID_GOOGLE_SERVICES_JSON="${{ secrets.ANDROID_GOOGLE_SERVICES_JSON }}" | base64 --decode > android/app/google-services.json
           EOF
       
       - name: Install dependencies

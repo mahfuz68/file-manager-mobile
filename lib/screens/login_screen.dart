@@ -38,15 +38,15 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   void initState() {
     super.initState();
-    _orbitCtrl1 = AnimationController(
-        vsync: this, duration: const Duration(seconds: 12))
-      ..repeat();
-    _orbitCtrl2 = AnimationController(
-        vsync: this, duration: const Duration(seconds: 18))
-      ..repeat(reverse: false);
-    _glowCtrl = AnimationController(
-        vsync: this, duration: const Duration(seconds: 6))
-      ..repeat(reverse: true);
+    _orbitCtrl1 =
+        AnimationController(vsync: this, duration: const Duration(seconds: 12))
+          ..repeat();
+    _orbitCtrl2 =
+        AnimationController(vsync: this, duration: const Duration(seconds: 18))
+          ..repeat(reverse: false);
+    _glowCtrl =
+        AnimationController(vsync: this, duration: const Duration(seconds: 6))
+          ..repeat(reverse: true);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Future.delayed(const Duration(milliseconds: 300), () {
@@ -211,13 +211,17 @@ class _LoginScreenState extends State<LoginScreen>
             decoration: BoxDecoration(
               color: AppColors.primary,
               shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: AppColors.primary.withOpacity(0.5), blurRadius: 6)],
+              boxShadow: [
+                BoxShadow(
+                    color: AppColors.primary.withOpacity(0.5), blurRadius: 6)
+              ],
             ),
           ),
           const SizedBox(width: 6),
           Text(
             'SECURE',
-            style: GoogleFonts.jetBrainsMono(color: const Color(0xFF444444), fontSize: 10, letterSpacing: 2),
+            style: GoogleFonts.jetBrainsMono(
+                color: const Color(0xFF444444), fontSize: 10, letterSpacing: 2),
           ),
         ]),
       ],
@@ -291,7 +295,10 @@ class _LoginScreenState extends State<LoginScreen>
               decoration: BoxDecoration(
                 color: AppColors.primary,
                 shape: BoxShape.circle,
-                boxShadow: [BoxShadow(color: AppColors.primary.withOpacity(0.7), blurRadius: 8)],
+                boxShadow: [
+                  BoxShadow(
+                      color: AppColors.primary.withOpacity(0.7), blurRadius: 8)
+                ],
               ),
               child: Center(
                 child: Container(
@@ -326,7 +333,8 @@ class _LoginScreenState extends State<LoginScreen>
         Text(
           'Sign in to access your Cloudflare R2 storage.',
           textAlign: TextAlign.center,
-          style: TextStyle(color: const Color(0xFF4A4A4A), fontSize: 13, height: 1.5),
+          style: TextStyle(
+              color: const Color(0xFF4A4A4A), fontSize: 13, height: 1.5),
         ),
       ],
     );
@@ -341,7 +349,10 @@ class _LoginScreenState extends State<LoginScreen>
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: const Color(0xFF1C1C1C)),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.55), blurRadius: 64, offset: const Offset(0, 24)),
+          BoxShadow(
+              color: Colors.black.withOpacity(0.55),
+              blurRadius: 64,
+              offset: const Offset(0, 24)),
         ],
       ),
       child: Stack(
@@ -354,7 +365,8 @@ class _LoginScreenState extends State<LoginScreen>
             child: Container(
               height: 1,
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(16)),
                 gradient: const LinearGradient(colors: [
                   Colors.transparent,
                   Color(0x4DF97316),
@@ -426,7 +438,9 @@ class _LoginScreenState extends State<LoginScreen>
               textInputAction: TextInputAction.next,
               style: const TextStyle(color: Colors.white, fontSize: 14),
               decoration: const InputDecoration(
-                border: InputBorder.none,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(color: const Color(0xFF242424)),
+                ),
                 hintText: 'you@example.com',
                 hintStyle: TextStyle(color: Color(0xFF3A3A3A)),
                 isDense: true,
@@ -475,7 +489,9 @@ class _LoginScreenState extends State<LoginScreen>
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Icon(
-                _showPassword ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                _showPassword
+                    ? Icons.visibility_off_outlined
+                    : Icons.visibility_outlined,
                 color: const Color(0xFF444444),
                 size: 18,
               ),
@@ -496,18 +512,23 @@ class _LoginScreenState extends State<LoginScreen>
           top: BorderSide(color: AppColors.destructive.withOpacity(0.15)),
           right: BorderSide(color: AppColors.destructive.withOpacity(0.15)),
           bottom: BorderSide(color: AppColors.destructive.withOpacity(0.15)),
-          left: BorderSide(color: AppColors.destructive.withOpacity(0.5), width: 2),
+          left: BorderSide(
+              color: AppColors.destructive.withOpacity(0.5), width: 2),
         ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.error_outline, color: AppColors.destructive.withOpacity(0.7), size: 14),
+          Icon(Icons.error_outline,
+              color: AppColors.destructive.withOpacity(0.7), size: 14),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
               message,
-              style: TextStyle(color: AppColors.destructive.withOpacity(0.85), fontSize: 12, height: 1.4),
+              style: TextStyle(
+                  color: AppColors.destructive.withOpacity(0.85),
+                  fontSize: 12,
+                  height: 1.4),
             ),
           ),
         ],
@@ -525,7 +546,8 @@ class _LoginScreenState extends State<LoginScreen>
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
           disabledBackgroundColor: AppColors.primary.withOpacity(0.55),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           elevation: 0,
         ),
         child: _loading
@@ -539,10 +561,13 @@ class _LoginScreenState extends State<LoginScreen>
                   ),
                 ),
                 const SizedBox(width: 8),
-                const Text('Signing in…', style: TextStyle(fontWeight: FontWeight.w600)),
+                const Text('Signing in…',
+                    style: TextStyle(fontWeight: FontWeight.w600)),
               ])
             : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                const Text('Sign In', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+                const Text('Sign In',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
                 const SizedBox(width: 8),
                 const Icon(Icons.arrow_forward, size: 16),
               ]),
@@ -552,15 +577,21 @@ class _LoginScreenState extends State<LoginScreen>
 
   Widget _buildFeatureCards() {
     const features = [
-      _FeatureData('UPLOAD', 'Fast Uploads', 'Presigned PUT URLs', Icons.upload_outlined, AppColors.primary),
-      _FeatureData('AUTH', 'Secure Access', 'Firebase powered', Icons.lock_outline, AppColors.primary),
-      _FeatureData('BROWSE', 'Navigation', 'Full folder tree', Icons.folder_open_outlined, AppColors.primary),
+      _FeatureData('UPLOAD', 'Fast Uploads', 'Presigned PUT URLs',
+          Icons.upload_outlined, AppColors.primary),
+      _FeatureData('AUTH', 'Secure Access', 'Firebase powered',
+          Icons.lock_outline, AppColors.primary),
+      _FeatureData('BROWSE', 'Navigation', 'Full folder tree',
+          Icons.folder_open_outlined, AppColors.primary),
     ];
     return Row(
-      children: features.map((f) => Expanded(child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: _FeatureCard(data: f),
-      ))).toList(),
+      children: features
+          .map((f) => Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: _FeatureCard(data: f),
+              )))
+          .toList(),
     );
   }
 
@@ -589,10 +620,26 @@ class _LoginScreenState extends State<LoginScreen>
     const offset = 20.0;
     const borderColor = Color(0x802A2A2A);
     final corners = [
-      Positioned(top: offset, left: offset, child: _Corner(top: true, left: true, size: size, color: borderColor)),
-      Positioned(top: offset, right: offset, child: _Corner(top: true, left: false, size: size, color: borderColor)),
-      Positioned(bottom: offset, left: offset, child: _Corner(top: false, left: true, size: size, color: borderColor)),
-      Positioned(bottom: offset, right: offset, child: _Corner(top: false, left: false, size: size, color: borderColor)),
+      Positioned(
+          top: offset,
+          left: offset,
+          child:
+              _Corner(top: true, left: true, size: size, color: borderColor)),
+      Positioned(
+          top: offset,
+          right: offset,
+          child:
+              _Corner(top: true, left: false, size: size, color: borderColor)),
+      Positioned(
+          bottom: offset,
+          left: offset,
+          child:
+              _Corner(top: false, left: true, size: size, color: borderColor)),
+      Positioned(
+          bottom: offset,
+          right: offset,
+          child:
+              _Corner(top: false, left: false, size: size, color: borderColor)),
     ];
     return corners;
   }
@@ -630,7 +677,8 @@ class _DotGridPainter extends CustomPainter {
 class _OrbitPainter extends CustomPainter {
   final double radiusX, radiusY;
   final Color color;
-  _OrbitPainter({required this.radiusX, required this.radiusY, required this.color});
+  _OrbitPainter(
+      {required this.radiusX, required this.radiusY, required this.color});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -685,7 +733,11 @@ class _Corner extends StatelessWidget {
   final bool top, left;
   final double size;
   final Color color;
-  const _Corner({required this.top, required this.left, required this.size, required this.color});
+  const _Corner(
+      {required this.top,
+      required this.left,
+      required this.size,
+      required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -760,10 +812,12 @@ class _BucketPainter extends CustomPainter {
     final path2 = Path()
       ..moveTo(4.5, 6)
       ..lineTo(4.5, 5)
-      ..arcToPoint(const Offset(9.5, 5), radius: const Radius.circular(2.5), clockwise: false)
+      ..arcToPoint(const Offset(9.5, 5),
+          radius: const Radius.circular(2.5), clockwise: false)
       ..lineTo(9.5, 6);
     canvas.drawPath(path2, paint);
-    canvas.drawCircle(const Offset(7, 9.5), 1, Paint()..color = AppColors.primary);
+    canvas.drawCircle(
+        const Offset(7, 9.5), 1, Paint()..color = AppColors.primary);
   }
 
   @override
@@ -774,7 +828,8 @@ class _CloudUploadIcon extends StatelessWidget {
   const _CloudUploadIcon();
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(size: const Size(26, 26), painter: _CloudUploadPainter());
+    return CustomPaint(
+        size: const Size(26, 26), painter: _CloudUploadPainter());
   }
 }
 
@@ -870,13 +925,25 @@ class _FeatureCardState extends State<_FeatureCard> {
         transform: Matrix4.translationValues(0, _hovered ? -3 : 0, 0),
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: _hovered ? AppColors.primary.withOpacity(0.03) : const Color(0xFF0E0E0E),
+          color: _hovered
+              ? AppColors.primary.withOpacity(0.03)
+              : const Color(0xFF0E0E0E),
           borderRadius: BorderRadius.circular(12),
           border: Border(
-            top: BorderSide(color: _hovered ? AppColors.primary.withOpacity(0.3) : const Color(0xFF1A1A1A)),
-            right: BorderSide(color: _hovered ? AppColors.primary.withOpacity(0.3) : const Color(0xFF1A1A1A)),
-            bottom: BorderSide(color: _hovered ? AppColors.primary.withOpacity(0.3) : const Color(0xFF1A1A1A)),
-            left: BorderSide(color: AppColors.primary.withOpacity(0.25), width: 2),
+            top: BorderSide(
+                color: _hovered
+                    ? AppColors.primary.withOpacity(0.3)
+                    : const Color(0xFF1A1A1A)),
+            right: BorderSide(
+                color: _hovered
+                    ? AppColors.primary.withOpacity(0.3)
+                    : const Color(0xFF1A1A1A)),
+            bottom: BorderSide(
+                color: _hovered
+                    ? AppColors.primary.withOpacity(0.3)
+                    : const Color(0xFF1A1A1A)),
+            left: BorderSide(
+                color: AppColors.primary.withOpacity(0.25), width: 2),
           ),
         ),
         child: Column(
@@ -895,13 +962,19 @@ class _FeatureCardState extends State<_FeatureCard> {
             const SizedBox(height: 8),
             Text(widget.data.label,
                 style: GoogleFonts.jetBrainsMono(
-                    color: AppColors.primary.withOpacity(0.55), fontSize: 8, letterSpacing: 2)),
+                    color: AppColors.primary.withOpacity(0.55),
+                    fontSize: 8,
+                    letterSpacing: 2)),
             const SizedBox(height: 2),
             Text(widget.data.title,
-                style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w500)),
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500)),
             const SizedBox(height: 2),
             Text(widget.data.desc,
-                style: const TextStyle(color: Color(0xFF333333), fontSize: 9, height: 1.4)),
+                style: const TextStyle(
+                    color: Color(0xFF333333), fontSize: 9, height: 1.4)),
           ],
         ),
       ),
