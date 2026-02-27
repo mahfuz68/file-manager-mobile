@@ -27,6 +27,24 @@ jobs:
           flutter-version: '3.24.0'
           channel: 'stable'
       
+      - name: Create .env file
+        run: |
+          cat > .env << EOF
+          R2_ENDPOINT=${{ secrets.R2_ENDPOINT }}
+          R2_ACCESS_KEY_ID=${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY=${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET_NAME=${{ secrets.R2_BUCKET_NAME }}
+          R2_REGION=auto
+          FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_MESSAGING_SENDER_ID=${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
+          FIREBASE_STORAGE_BUCKET=${{ secrets.FIREBASE_STORAGE_BUCKET }}
+          FIREBASE_ANDROID_API_KEY=${{ secrets.FIREBASE_ANDROID_API_KEY }}
+          FIREBASE_ANDROID_APP_ID=${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          FIREBASE_IOS_API_KEY=${{ secrets.FIREBASE_IOS_API_KEY }}
+          FIREBASE_IOS_APP_ID=${{ secrets.FIREBASE_IOS_APP_ID }}
+          FIREBASE_IOS_BUNDLE_ID=com.filemanager.r2FileManager
+          EOF
+      
       - name: Install dependencies
         run: flutter pub get
       
