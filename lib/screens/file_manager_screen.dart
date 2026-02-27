@@ -2,7 +2,6 @@
 //
 // Main file manager screen — mirrors the web's FileManagerShell + Header + BreadcrumbNav + FileList.
 
-import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,7 +22,6 @@ import '../widgets/new_folder_bottom_sheet.dart';
 import '../widgets/rename_bottom_sheet.dart';
 import '../widgets/delete_bottom_sheet.dart';
 import '../widgets/share_bottom_sheet.dart';
-import '../widgets/share_link_bottom_sheet.dart';
 
 class FileManagerScreen extends StatefulWidget {
   const FileManagerScreen({super.key});

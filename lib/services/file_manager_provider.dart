@@ -2,7 +2,6 @@
 //
 // ChangeNotifier-based state: current path, file list, selection, search.
 
-import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
 import '../models/file_item.dart';
 import 'r2_service.dart';
