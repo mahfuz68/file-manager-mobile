@@ -17,7 +17,7 @@ I've analyzed the entire R2 File Manager Flutter mobile app and identified and f
    - File: `android/app/src/main/AndroidManifest.xml`
 
 3. **Incorrect package names**
-   - Updated namespace from `com.example.r2_file_manager` to `com.filemanager.r2_file_manager`
+   - Updated namespace from `com.example.r2_file_manager` to `com.filefort.app`
    - Updated applicationId to match README specification
    - Moved MainActivity to correct package directory
    - Files affected:

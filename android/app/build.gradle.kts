@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.filemanager.r2_file_manager"
+    namespace = "com.filefort.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.filemanager.r2_file_manager"
+        applicationId = "com.filefort.app"
         minSdk = flutter.minSdkVersion
         targetSdk = 34
         versionCode = 1

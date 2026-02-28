@@ -26,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen>
   final _emailCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
   final _emailFocus = FocusNode();
+  final _passwordFocus = FocusNode();
 
   bool _loading = false;
   bool _showPassword = false;
@@ -89,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen>
       await _authService.signIn(email, password);
       // AuthWrapper will handle routing automatically
     } on Exception catch (e) {
-      setState(() => _error = e.toString().replaceFirst('Exception: ', ''));
+      setState(() => _error = _authService.getFriendlyError(e));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -417,40 +418,53 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Widget _buildEmailField() {
-    return Container(
-      height: 44,
-      decoration: BoxDecoration(
-        color: const Color(0xFF0D0D0D),
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: const Color(0xFF242424)),
-      ),
-      child: Row(
-        children: [
-          const SizedBox(width: 12),
-          _EmailIcon(),
-          const SizedBox(width: 8),
-          Expanded(
-            child: TextField(
-              controller: _emailCtrl,
-              focusNode: _emailFocus,
-              keyboardType: TextInputType.emailAddress,
-              autocorrect: false,
-              textInputAction: TextInputAction.next,
-              style: const TextStyle(color: Colors.white, fontSize: 14),
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: const Color(0xFF242424)),
-                ),
-                hintText: 'you@example.com',
-                hintStyle: TextStyle(color: Color(0xFF3A3A3A)),
-                isDense: true,
-                contentPadding: EdgeInsets.zero,
-              ),
-              onChanged: (_) => setState(() => _error = null),
+    return AnimatedBuilder(
+      animation: _emailFocus,
+      builder: (context, child) {
+        return Container(
+          height: 44,
+          decoration: BoxDecoration(
+            color: const Color(0xFF0D0D0D),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: _emailFocus.hasFocus
+                  ? AppColors.primary
+                  : const Color(0xFF242424),
             ),
           ),
-        ],
-      ),
+          child: Row(
+            children: [
+              const SizedBox(width: 12),
+              const _EmailIcon(),
+              const SizedBox(width: 8),
+              Expanded(
+                child: TextField(
+                  controller: _emailCtrl,
+                  focusNode: _emailFocus,
+                  keyboardType: TextInputType.emailAddress,
+                  autocorrect: false,
+                  textInputAction: TextInputAction.next,
+                  style: const TextStyle(color: Colors.white, fontSize: 14),
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    focusedErrorBorder: InputBorder.none,
+                    hoverColor: Colors.transparent,
+                    hintText: 'you@example.com',
+                    hintStyle: TextStyle(color: Color(0xFF3A3A3A)),
+                    isDense: true,
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                  onChanged: (_) => setState(() => _error = null),
+                ),
+              ),
+              const SizedBox(width: 12),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -460,7 +474,11 @@ class _LoginScreenState extends State<LoginScreen>
       decoration: BoxDecoration(
         color: const Color(0xFF0D0D0D),
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: const Color(0xFF242424)),
+        border: Border.all(
+          color: _passwordFocus.hasFocus
+              ? AppColors.primary
+              : const Color(0xFF242424),
+        ),
       ),
       child: Row(
         children: [
@@ -475,6 +493,11 @@ class _LoginScreenState extends State<LoginScreen>
               style: const TextStyle(color: Colors.white, fontSize: 14),
               decoration: const InputDecoration(
                 border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                errorBorder: InputBorder.none,
+                focusedErrorBorder: InputBorder.none,
+                hoverColor: Colors.transparent,
                 hintText: '••••••••',
                 hintStyle: TextStyle(color: Color(0xFF3A3A3A)),
                 isDense: true,
@@ -884,9 +907,10 @@ class _CloudUploadPainter extends CustomPainter {
 }
 
 class _EmailIcon extends StatelessWidget {
+  const _EmailIcon();
   @override
   Widget build(BuildContext context) {
-    return const Icon(Icons.mail_outline, color: Color(0xFF444444), size: 16);
+    return const Icon(Icons.email_outlined, color: Color(0xFF444444), size: 16);
   }
 }
 

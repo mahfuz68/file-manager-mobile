@@ -94,7 +94,7 @@ R2_REGION=auto
 
 1. Create a Firebase project at [console.firebase.google.com](https://console.firebase.google.com).
 2. Enable **Authentication → Email/Password**.
-3. Add an **Android app** (package: `com.filemanager.r2_file_manager`) and an **iOS app** (bundle ID: `com.filemanager.r2FileManager`).
+3. Add an **Android app** (package: `com.filefort.app`) and an **iOS app** (bundle ID: `com.filemanager.r2FileManager`).
 4. Download `google-services.json` → place in `android/app/`.
 5. Download `GoogleService-Info.plist` → place in `ios/Runner/`.
 6. Fill in `lib/firebase_options.dart` with your project's values
