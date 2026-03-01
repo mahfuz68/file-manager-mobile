@@ -1,4 +1,4 @@
-package com.filemanager.r2_file_manager
+package com.filefort.app
 
 import io.flutter.embedding.android.FlutterActivity
 
