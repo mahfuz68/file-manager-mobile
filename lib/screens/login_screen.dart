@@ -821,26 +821,50 @@ class _BucketIcon extends StatelessWidget {
 class _BucketPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
+    final paintStroke = Paint()
+      ..color = AppColors.primary
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.2;
+
+    final paintStrokeRound = Paint()
       ..color = AppColors.primary
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.2
       ..strokeCap = StrokeCap.round;
-    final path = Path();
-    path.addRRect(RRect.fromRectAndRadius(
-      Rect.fromLTWH(1.5, 6, 11, 6.5),
-      const Radius.circular(2),
-    ));
-    canvas.drawPath(path, paint);
+
+    final paintFill = Paint()
+      ..color = AppColors.primary
+      ..style = PaintingStyle.fill;
+
+    // Path 1 (Bucket body)
+    // d="M2 9.5C2 8.12 3.12 7 4.5 7h5C10.88 7 12 8.12 12 9.5S10.88 12 9.5 12h-5C3.12 12 2 10.88 2 9.5Z"
+    final path1 = Path()
+      ..moveTo(2, 9.5)
+      ..cubicTo(2, 8.12, 3.12, 7, 4.5, 7)
+      ..lineTo(9.5, 7)
+      ..cubicTo(10.88, 7, 12, 8.12, 12, 9.5)
+      ..cubicTo(12, 10.88, 10.88, 12, 9.5, 12)
+      ..lineTo(4.5, 12)
+      ..cubicTo(3.12, 12, 2, 10.88, 2, 9.5)
+      ..close();
+    canvas.drawPath(path1, paintStroke);
+
+    // Path 2 (Bucket handle)
+    // d="M4.5 7V6a2.5 2.5 0 0 1 5 0v1"
     final path2 = Path()
-      ..moveTo(4.5, 6)
-      ..lineTo(4.5, 5)
-      ..arcToPoint(const Offset(9.5, 5),
-          radius: const Radius.circular(2.5), clockwise: false)
-      ..lineTo(9.5, 6);
-    canvas.drawPath(path2, paint);
-    canvas.drawCircle(
-        const Offset(7, 9.5), 1, Paint()..color = AppColors.primary);
+      ..moveTo(4.5, 7)
+      ..lineTo(4.5, 6)
+      ..arcToPoint(
+        const Offset(9.5, 6),
+        radius: const Radius.circular(2.5),
+        clockwise: true,
+      )
+      ..lineTo(9.5, 7);
+    canvas.drawPath(path2, paintStrokeRound);
+
+    // Circle (Keyhole)
+    // cx="7" cy="9.5" r="1"
+    canvas.drawCircle(const Offset(7, 9.5), 1, paintFill);
   }
 
   @override
@@ -859,47 +883,55 @@ class _CloudUploadIcon extends StatelessWidget {
 class _CloudUploadPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
+    // Scale canvas to match the 32x32 viewBox of the SVG
+    final scaleX = size.width / 32;
+    final scaleY = size.height / 32;
+    canvas.scale(scaleX, scaleY);
+
     final paint = Paint()
       ..color = AppColors.primary
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.5
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round;
+
     final fill = Paint()
       ..color = AppColors.primary.withOpacity(0.15)
       ..style = PaintingStyle.fill;
 
+    // Path 1: Cloud shape
+    // M8 22a5 5 0 0 1 0-10h.5A6 6 0 0 1 20 10.5a4.5 4.5 0 1 1 .5 9H8Z
     final cloudPath = Path()
-      ..moveTo(size.width * 0.25, size.height * 0.69)
-      ..arcToPoint(Offset(size.width * 0.25, size.height * 0.37),
-          radius: Radius.circular(size.height * 0.15), clockwise: false)
-      ..arcToPoint(Offset(size.width * 0.625, size.height * 0.25),
-          radius: Radius.circular(size.height * 0.18), clockwise: false)
-      ..arcToPoint(Offset(size.width * 0.875, size.height * 0.37),
-          radius: Radius.circular(size.height * 0.14), clockwise: false)
-      ..arcToPoint(Offset(size.width * 0.875, size.height * 0.69),
-          radius: Radius.circular(size.height * 0.15), clockwise: false)
+      ..moveTo(8, 22)
+      ..arcToPoint(const Offset(8, 12),
+          radius: const Radius.circular(5),
+          largeArc: false,
+          clockwise: true)
+      ..lineTo(8.5, 12)
+      ..arcToPoint(const Offset(20, 10.5),
+          radius: const Radius.circular(6),
+          largeArc: false,
+          clockwise: true)
+      ..arcToPoint(const Offset(20.5, 19.5),
+          radius: const Radius.circular(4.5),
+          largeArc: true,
+          clockwise: true)
+      ..lineTo(8, 19.5)
       ..close();
 
     canvas.drawPath(cloudPath, fill);
     canvas.drawPath(cloudPath, paint);
 
-    // Upload arrow
-    canvas.drawLine(
-      Offset(size.width / 2, size.height * 0.56),
-      Offset(size.width / 2, size.height * 0.37),
-      paint,
-    );
-    canvas.drawLine(
-      Offset(size.width * 0.40, size.height * 0.47),
-      Offset(size.width / 2, size.height * 0.37),
-      paint,
-    );
-    canvas.drawLine(
-      Offset(size.width * 0.60, size.height * 0.47),
-      Offset(size.width / 2, size.height * 0.37),
-      paint,
-    );
+    // Path 2: Upload arrow
+    // M16 18v-6M13 15l3-3 3 3
+    final arrowPath = Path()
+      ..moveTo(16, 18)
+      ..lineTo(16, 12)
+      ..moveTo(13, 15)
+      ..lineTo(16, 12)
+      ..lineTo(19, 15);
+
+    canvas.drawPath(arrowPath, paint);
   }
 
   @override

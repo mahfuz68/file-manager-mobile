@@ -45,6 +45,11 @@ class Toolbar extends StatelessWidget {
                         style: const TextStyle(color: Colors.white, fontSize: 13),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          focusedErrorBorder: InputBorder.none,
+                          hoverColor: Colors.transparent,
                           hintText: 'Search files…',
                           hintStyle: TextStyle(color: Color(0xFF3A3A3A), fontSize: 13),
                           isDense: true,
@@ -70,7 +75,8 @@ class Toolbar extends StatelessWidget {
                         onTap: () => provider.setTypeFilter(value),
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 150),
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: isActive
                                 ? AppColors.primary.withOpacity(0.12)

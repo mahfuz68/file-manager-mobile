@@ -196,43 +196,47 @@ class _FileItemTileState extends State<FileItemTile> {
               child: _showActions && !isSelected
                   ? Padding(
                       padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          _ActionButton(
-                            icon: Icons.drive_file_rename_outline,
-                            label: 'Rename',
-                            onTap: () {
-                              setState(() => _showActions = false);
-                              widget.onAction('rename');
-                            },
-                          ),
-                          _ActionButton(
-                            icon: Icons.share_outlined,
-                            label: 'Share',
-                            onTap: () {
-                              setState(() => _showActions = false);
-                              widget.onAction('share');
-                            },
-                          ),
-                          _ActionButton(
-                            icon: Icons.download_outlined,
-                            label: 'Download',
-                            onTap: () {
-                              setState(() => _showActions = false);
-                              widget.onAction('download');
-                            },
-                          ),
-                          _ActionButton(
-                            icon: Icons.delete_outline,
-                            label: 'Delete',
-                            isDestructive: true,
-                            onTap: () {
-                              setState(() => _showActions = false);
-                              widget.onAction('delete');
-                            },
-                          ),
-                        ],
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        reverse: true, // Scroll to the right end by default
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            _ActionButton(
+                              icon: Icons.drive_file_rename_outline,
+                              label: 'Rename',
+                              onTap: () {
+                                setState(() => _showActions = false);
+                                widget.onAction('rename');
+                              },
+                            ),
+                            _ActionButton(
+                              icon: Icons.share_outlined,
+                              label: 'Share',
+                              onTap: () {
+                                setState(() => _showActions = false);
+                                widget.onAction('share');
+                              },
+                            ),
+                            _ActionButton(
+                              icon: Icons.download_outlined,
+                              label: 'Download',
+                              onTap: () {
+                                setState(() => _showActions = false);
+                                widget.onAction('download');
+                              },
+                            ),
+                            _ActionButton(
+                              icon: Icons.delete_outline,
+                              label: 'Delete',
+                              isDestructive: true,
+                              onTap: () {
+                                setState(() => _showActions = false);
+                                widget.onAction('delete');
+                              },
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   : const SizedBox.shrink(),
