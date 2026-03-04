@@ -69,35 +69,28 @@ class _NewFolderModalState extends State<NewFolderModal> {
                         child: const Icon(Icons.create_new_folder_outlined, color: AppColors.primary, size: 18),
                       ),
                       const SizedBox(width: 14),
-                      // Middle: Title and subtitle
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Create New Folder",
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
+                      // Title and subtitle
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Create New Folder",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
                             ),
-                            Text(
-                              "NEW DIRECTORY · CLOUDFLARE R2",
-                              style: GoogleFonts.jetBrainsMono(
-                                color: const Color(0xFF555555),
-                                fontSize: 9,
-                                letterSpacing: 1.5,
-                                fontWeight: FontWeight.w400,
-                              ),
+                          ),
+                          Text(
+                            "NEW DIRECTORY · CLOUDFLARE R2",
+                            style: GoogleFonts.jetBrainsMono(
+                              color: const Color(0xFF555555),
+                              fontSize: 9,
+                              letterSpacing: 1.5,
+                              fontWeight: FontWeight.w400,
                             ),
-                          ],
-                        ),
-                      ),
-                      // Right: "X" icon button to close
-                      IconButton(
-                        icon: const Icon(Icons.close, color: Color(0xFF666666), size: 20),
-                        onPressed: () => Navigator.pop(context),
+                          ),
+                        ],
                       ),
                     ],
                   ),
