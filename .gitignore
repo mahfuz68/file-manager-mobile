@@ -78,6 +78,8 @@ firebase-debug.log
 # Coverage
 coverage/
 
+.worktrees/
+
 # Exceptions to above rules
 !android/gradle/wrapper/gradle-wrapper.jar
 !android/gradle/wrapper/gradle-wrapper.properties
