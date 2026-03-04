@@ -9,7 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
-
+.PNG
 # IntelliJ related
 *.iml
 *.ipr
@@ -77,6 +77,8 @@ firebase-debug.log
 
 # Coverage
 coverage/
+
+.worktrees/
 
 # Exceptions to above rules
 !android/gradle/wrapper/gradle-wrapper.jar

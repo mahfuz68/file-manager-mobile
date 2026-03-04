@@ -96,12 +96,25 @@ class _RenameBottomSheetState extends State<RenameBottomSheet> {
               SheetErrorBanner(message: _error!),
             ],
             const SizedBox(height: 20),
-            SheetPrimaryButton(
-              label: 'Rename',
-              icon: Icons.drive_file_rename_outline,
-              isLoading: _loading,
-              onTap: _rename,
-            ),
+            Row(children: [
+              Expanded(
+                child: SheetSecondaryButton(
+                  label: 'Cancel',
+                  onTap: () => Navigator.pop(context),
+                  disabled: _loading,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                flex: 2,
+                child: SheetPrimaryButton(
+                  label: 'Rename',
+                  icon: Icons.drive_file_rename_outline,
+                  isLoading: _loading,
+                  onTap: _rename,
+                ),
+              ),
+            ]),
           ],
         ),
       ),

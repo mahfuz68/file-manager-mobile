@@ -202,7 +202,7 @@ class _FileManagerScreenState extends State<FileManagerScreen> {
   Widget _buildHeader() {
     final user = _authService.currentUser;
     return Container(
-      height: 56,
+      height: 48,
       decoration: const BoxDecoration(
         color: AppColors.background,
         border: Border(
@@ -227,14 +227,16 @@ class _FileManagerScreenState extends State<FileManagerScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
                 // Logo
                 Container(
-                  width: 28,
-                  height: 28,
+                  width: 24,
+                  height: 24,
                   decoration: BoxDecoration(
                     color: AppColors.primary.withOpacity(0.10),
                     borderRadius: BorderRadius.circular(6),
@@ -242,13 +244,13 @@ class _FileManagerScreenState extends State<FileManagerScreen> {
                   ),
                   child: const Center(child: _BucketIconSmall()),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 8),
                 Text(
-                  'MY FILE MANAGER',
+                  'MY FILES',
                   style: GoogleFonts.jetBrainsMono(
                     color: const Color(0xFF444444),
                     fontSize: 9,
-                    letterSpacing: 2,
+                    letterSpacing: 1.5,
                   ),
                 ),
                 const Spacer(),
@@ -256,16 +258,16 @@ class _FileManagerScreenState extends State<FileManagerScreen> {
                 // User email chip
                 if (user?.email != null) ...[
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.03),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(6),
                       border: Border.all(color: AppColors.border.withOpacity(0.7)),
                     ),
                     child: Row(children: [
                       Container(
-                        width: 16,
-                        height: 16,
+                        width: 14,
+                        height: 14,
                         decoration: BoxDecoration(
                           color: AppColors.primary.withOpacity(0.2),
                           shape: BoxShape.circle,
@@ -275,54 +277,44 @@ class _FileManagerScreenState extends State<FileManagerScreen> {
                             user!.email![0].toUpperCase(),
                             style: const TextStyle(
                               color: AppColors.primary,
-                              fontSize: 9,
+                              fontSize: 8,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                       ),
-                      const SizedBox(width: 6),
+                      const SizedBox(width: 5),
                       ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 120),
+                        constraints: const BoxConstraints(maxWidth: 80),
                         child: Text(
                           user.email!,
                           overflow: TextOverflow.ellipsis,
                           style: GoogleFonts.jetBrainsMono(
                             color: const Color(0xFF666666),
-                            fontSize: 9,
+                            fontSize: 8,
                           ),
                         ),
                       ),
                     ]),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 6),
                 ],
 
                 // Sign out button
                 GestureDetector(
                   onTap: _signOut,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.03),
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(6),
                       border: Border.all(color: AppColors.border.withOpacity(0.6)),
                     ),
-                    child: Row(children: [
-                      const Icon(Icons.logout, size: 14, color: Color(0xFF555555)),
-                      const SizedBox(width: 4),
-                      Text(
-                        'SIGN OUT',
-                        style: GoogleFonts.jetBrainsMono(
-                          color: const Color(0xFF555555),
-                          fontSize: 9,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ]),
+                    child: const Icon(Icons.logout, size: 16, color: Color(0xFF555555)),
                   ),
                 ),
               ],
+            ),
             ),
           ),
         ],

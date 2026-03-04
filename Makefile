@@ -35,8 +35,9 @@ clean:
 
 build-apk: install-deps
 	@echo "Building universal release APK..."
-	@export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && \
-	export PATH=$$JAVA_HOME/bin:$$PATH && \
+	@export ANDROID_HOME=$$HOME/android && \
+	export ANDROID_SDK_ROOT=$$HOME/android && \
+	export PATH="$$PATH:$$ANDROID_HOME/cmdline-tools/latest/bin:$$ANDROID_HOME/platform-tools:$$HOME/flutter/bin" && \
 	flutter build apk --release
 	@echo ""
 	@echo "✓ Universal APK built successfully!"
@@ -44,8 +45,9 @@ build-apk: install-deps
 
 build-apk-debug: install-deps
 	@echo "Building debug APK..."
-	@export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && \
-	export PATH=$$JAVA_HOME/bin:$$PATH && \
+	@export ANDROID_HOME=$$HOME/android && \
+	export ANDROID_SDK_ROOT=$$HOME/android && \
+	export PATH="$$PATH:$$ANDROID_HOME/cmdline-tools/latest/bin:$$ANDROID_HOME/platform-tools:$$HOME/flutter/bin" && \
 	flutter build apk --debug
 	@echo ""
 	@echo "✓ Debug APK built successfully!"
@@ -53,8 +55,9 @@ build-apk-debug: install-deps
 
 build-apk-split: install-deps
 	@echo "Building split APKs per architecture..."
-	@export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && \
-	export PATH=$$JAVA_HOME/bin:$$PATH && \
+	@export ANDROID_HOME=$$HOME/android && \
+	export ANDROID_SDK_ROOT=$$HOME/android && \
+	export PATH="$$PATH:$$ANDROID_HOME/cmdline-tools/latest/bin:$$ANDROID_HOME/platform-tools:$$HOME/flutter/bin" && \
 	flutter build apk --release --split-per-abi
 	@echo ""
 	@echo "✓ Split APKs built successfully!"
@@ -65,8 +68,9 @@ build-apk-split: install-deps
 
 build-apk-all: install-deps
 	@echo "Building all APK variants..."
-	@export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && \
-	export PATH=$$JAVA_HOME/bin:$$PATH && \
+	@export ANDROID_HOME=$$HOME/android && \
+	export ANDROID_SDK_ROOT=$$HOME/android && \
+	export PATH="$$PATH:$$ANDROID_HOME/cmdline-tools/latest/bin:$$ANDROID_HOME/platform-tools:$$HOME/flutter/bin" && \
 	flutter build apk --release && \
 	flutter build apk --release --split-per-abi
 	@echo ""
